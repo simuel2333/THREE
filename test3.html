@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./three.js"></script>
+    
+</head>
+<body onload="init()">
+    <canvas id="myCanvas" width="800px" height="600px"></canvas>
+    <script>
+        
+        function init() {
+            let renderer = new THREE.WebGLRenderer({
+                canvas: document.getElementById('myCanvas')
+            });
+        
+            renderer.setClearColor(0x000000);
+
+            let scene = new THREE.Scene();
+
+            let camera = new THREE.OrthographicCamera(-4, 4, 3, -3, 1, 10);
+            camera.position.set(0, 0, 5);
+            camera.lookAt(new THREE.Vector3(0, 0, 0));
+            scene.add(camera);
+            //平面
+            let cube = new THREE.Mesh(new THREE.PlaneGeometry(2, 4), new THREE.MeshBasicMaterial({
+                wireframe: true,
+                color: 0xff0000
+            }));
+
+            scene.add(cube);
+            
+            renderer.render(scene, camera);
+        }
+    </script>
+</body>
+</html>
